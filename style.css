@@ -41,10 +41,12 @@ h1{
 
 .cards-container{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, 14rem);
+    grid-template-rows: repeat(auto-fill, 18.4rem);
     gap: 1rem;
 
-    max-width: 50rem;
+    width: 80%;
+    max-width: 60rem;
     padding-inline: 2rem;
 }
 .card{
@@ -67,7 +69,7 @@ h1{
     justify-content: space-between;
     align-items: center;
 
-    width: 100%;
+    width: 14rem;
     padding: .6rem 1rem;
     box-sizing: border-box;
 }
