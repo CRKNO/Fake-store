@@ -2,11 +2,16 @@
     --black: #000;
     --white: #fff;
     --light-grey: #e1e1e1;
-    --green-hospital: #28DF99;
+    --primary: #887be3;
 }
 *{
     margin: 0;
     padding: 0;
+}
+/* || General */
+
+li{
+    list-style: none;
 }
 body{
     font-family: Arial, Helvetica, sans-serif;
@@ -23,17 +28,43 @@ main{
     margin-block-start: 3rem;
 }
 
-/* || header */
+/* || Navbar */
 
 header{
     display: flex;
     align-items: center;
+    
     height: 6rem;
-
-    background-color: var(--green-hospital);
+    
+    background-color: var(--primary);
+    color: var(--white);
 }
 h1{
     padding-inline: 1rem;
+    width: 6rem;
+    text-shadow: 0 0 1px var(--black);
+}
+nav{
+    height: 100%;
+}
+nav ul{
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+
+    height: 100%;
+    padding-inline: 1rem;
+    padding-block-end: 1rem;
+    box-sizing: border-box;
+}
+nav ul a{
+    font-size: 1.2rem;
+    text-decoration: none;
+
+    color: var(--white);
+}
+nav ul a:hover{
+    text-decoration: underline;
 }
 
 
@@ -43,9 +74,10 @@ h1{
     display: grid;
     grid-template-columns: repeat(auto-fill, 14rem);
     grid-template-rows: repeat(auto-fill, 18.4rem);
+    place-content: center;
     gap: 1rem;
 
-    width: 80%;
+    width: 80%; 
     max-width: 60rem;
     padding-inline: 2rem;
 }
