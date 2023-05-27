@@ -1,7 +1,8 @@
 :root{
     --black: #000;
     --white: #fff;
-    --light-grey: #e1e1e1;
+    --light-grey: #f0eff9;
+    --dark-grey: #353535;
     --primary: #887be3;
 }
 *{
@@ -17,7 +18,7 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 
     background-color: var(--light-grey);
-    color: var(--black);
+    color: var(--dark-grey);
 }
 main{
     display: flex;
@@ -68,19 +69,39 @@ nav ul a:hover{
 }
 
 
-/* || Cards */
-
+/* || Cards Containers */
 .cards-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.cards-container .category-list{
     display: grid;
     grid-template-columns: repeat(auto-fill, 14rem);
-    grid-template-rows: repeat(auto-fill, 18.4rem);
+    grid-template-rows: 1.5rem;
     place-content: center;
     gap: 1rem;
-
-    width: 80%; 
+    
+    width: 80%;
     max-width: 60rem;
     padding-inline: 2rem;
+    margin-block-start: 2rem;
 }
+.category-title{
+    grid-column: 1 / -1;
+
+    font-size: 1.8rem;
+    font-weight: normal;
+
+    color:var(--dark-grey);
+}
+.category-title::first-letter{
+    text-transform: uppercase;
+}
+
+
+/* || Cards */
 .card{
     display: flex;
     flex-direction: column;
@@ -90,7 +111,9 @@ nav ul a:hover{
     width: 100%;
     min-width: 14rem;
     height: 17.8rem;
+    margin-block-end: .6rem;
     border-radius: .3rem;
+
     box-shadow: 0px 1px 1px rgba(0,0,0, .1);
     overflow: hidden;
 
@@ -102,7 +125,7 @@ nav ul a:hover{
     align-items: center;
 
     width: 14rem;
-    padding: .6rem 1rem;
+    padding: .6rem .65rem;
     box-sizing: border-box;
 }
 .card img{
@@ -114,12 +137,18 @@ nav ul a:hover{
     object-fit: cover;
 }
 .card:hover{
+    margin:0;
     min-height: 18.4rem;
     box-shadow: 0px 10px 10px 0px rgba(0,0,0, .2);
 }
 .card .price{
     font-size: 1.4rem;
+    white-space: nowrap; 
 }
 .card .title{
-    font-size: 1.2rem;
+    font-size: 1rem;
+    text-overflow:ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    
 }
