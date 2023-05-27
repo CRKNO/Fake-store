@@ -1,29 +1,13 @@
 // import fetch from "node-fetch";
-const API = "https://api.escuelajs.co/api/v1";
-const mainContainer = document.querySelector(".cards-container");
+const API = "https://api.escuelajs.co/api/v1"; // API URL
+const mainContainer = document.querySelector(".cards-container"); 
 
-async function fetchData(urlApi){
+async function fetchData(urlApi){   
     const response = (await fetch(urlApi)).json();
     return response;
 }
 
-const productsList = async (urlApi)=>{
-    try{
-        const products = await fetchData(`${urlApi}/products`);
-        const categoryProducts = [];
-        products.forEach(product => {
-            if(product.category.id == 1){ //tengo que adaptar eso para que cargue en la homepage 4 elementos de cada categoria.
-                categoryProducts.push(product);
-            }
-        })
-
-    }
-    catch(err){
-        console.error(err);
-    }
-}
-
-//makes the container of a category
+//create the container of a category
 function categoryContainerConstructor(category){
     let container = document.createElement("div");
     container.classList.add("category-list", `${category.name.replaceAll(" ", "-")}-category`);
@@ -34,7 +18,15 @@ function categoryContainerConstructor(category){
     container.append(categoryTitle);
 
     return container;
+
+    /* Layout model
+
+    <div class="category-list clothes-category">
+        <h2 class="category-title">Clothes</h2>
+    </div> 
+    */
 }
+//create the product card
 function productCardConstructor(product){
     let cardDiv = document.createElement("div");
     cardDiv.classList.add("card");
@@ -56,24 +48,21 @@ function productCardConstructor(product){
     cardDiv.append(img, infoDiv);
 
     return cardDiv;
-}
-/* 
-<div class="category-list clothes-category">
-    <h2 class="category-title">Clothes</h2>
-                
-    <div class="card">
-        <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg" alt="">
-        <div>
-            <p class="price">$ 150</p>
-            <p class="title"> Bike </p>
-        </div>
+
+/* Layout model
+
+<div class="card">
+    <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg" alt="">
+    <div>
+        <p class="price">$ 150</p>
+        <p class="title"> Bike </p>
     </div>
-
-</div> 
+</div>
 */
+}
 
 
-const fetchCategories = async (urlApi)=>{
+const fetchCategories = async (urlApi)=>{ //fetch categoríes from API
     try{
         const categories = await fetchData(`${urlApi}/categories`);
         categories.forEach(async(category) => {
@@ -92,13 +81,16 @@ const fetchCategories = async (urlApi)=>{
         console.error(err);
     }
 }
-const fetchProducts = async (urlApi, category)=>{
+
+//fetch products by category
+const fetchProducts = async (urlApi, category)=>{ 
     try{
-        const products = await fetchData(`${urlApi}/products/?categoryId=${category.id}&offset=10&limit=4`);
+        const products = await fetchData(`${urlApi}/products/?categoryId=${category.id}&offset=10&limit=4`); //limit of 4 products on the homepage
         return products;
     }
     catch(err){
         console.error(err);
     }
 }
+
 fetchCategories(API);
