@@ -85,7 +85,6 @@ nav ul a:hover{
     
     width: 80%;
     max-width: 60rem;
-    padding-inline: 2rem;
     margin-block-start: 2rem;
 }
 .category-title{
@@ -151,4 +150,18 @@ nav ul a:hover{
     overflow: hidden;
     white-space: nowrap;
     
+}
+
+
+@media(max-width: 650px){
+/* provisional */
+    body{
+        min-width: 520px;
+    }
+    nav{
+        overflow: hidden;
+    }
+    .cards-container .category-list{
+        width: 90%;
+    }
 }
