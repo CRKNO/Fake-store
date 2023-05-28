@@ -68,8 +68,9 @@ const fetchCategories = async (urlApi)=>{ //fetch categoríes from API
         categories.forEach(async(category) => {
             const categoryContainer = categoryContainerConstructor(category);
             mainContainer.append(categoryContainer);
-
-            const products = await fetchProducts(urlApi, category);
+            
+            const productsAmount = getComputedStyle(categoryContainer).gridTemplateColumns.split(" ").length*2; //the amount of products per category
+            const products = await fetchProducts(urlApi, category, productsAmount);
             console.log(products)
             products.forEach(product => {
                 categoryContainer.append(productCardConstructor(product))
@@ -83,9 +84,9 @@ const fetchCategories = async (urlApi)=>{ //fetch categoríes from API
 }
 
 //fetch products by category
-const fetchProducts = async (urlApi, category)=>{ 
+const fetchProducts = async (urlApi, category, limit)=>{ 
     try{
-        const products = await fetchData(`${urlApi}/products/?categoryId=${category.id}&offset=10&limit=4`); //limit of 4 products on the homepage
+        const products = await fetchData(`${urlApi}/products/?categoryId=${category.id}&offset=10&limit=${limit}`);
         return products;
     }
     catch(err){
